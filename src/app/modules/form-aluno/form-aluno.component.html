@@ -1,0 +1,31 @@
+<p-toast />
+<div class="main">
+  <form [formGroup]="aluno">
+    <h3>Novo aluno</h3>
+    <label for="nome">Nome</label>
+    <input
+        pInputText
+        id="nome"
+        aria-describedby="nome-help"
+        formControlName="nome" />
+    <label for="matricula">Matrícula</label>
+    <input
+        pInputText
+        id="matricula"
+        aria-describedby="matricula-help"
+        formControlName="matricula" />
+    <label for="email">Email</label>
+    <input
+        pInputText
+        id="email"
+        aria-describedby="email-help"
+        formControlName="email" />
+    <label for="idade">Idade</label>
+    <input
+        pInputText
+        id="idade"
+        aria-describedby="idade-help"
+        formControlName="idade" />
+    <p-button (onClick)="cadastrar()" label="{{buttonTitle}}" severity="success" />
+  </form>
+</div>

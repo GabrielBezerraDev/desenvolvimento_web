@@ -1,0 +1,25 @@
+.title{
+  width: 100%;
+  padding-left: 5%;
+}
+
+.card{
+  width: 90%;
+  margin: 0 0 100px 0;
+  box-shadow: 1.5px 1.5px #d6d6d6, -1px -1px #d6d6d6;
+}
+
+.body{
+  width: 100%;
+  min-height: var(--content-container);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons{
+  display: flex;
+  column-gap: 10px;
+}

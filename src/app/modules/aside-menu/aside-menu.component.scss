@@ -1,0 +1,29 @@
+i{
+  position: absolute;
+  top: 21px;
+  left:10px;
+  transition: transform 0.3s;
+}
+
+h2{
+  margin-top: 15px;
+}
+
+aside{
+  padding-left: 40px;
+  position: sticky;
+  top: 0;
+  width: 270px;
+  height: 100vh;
+  background-color: #f4f8e9;
+  transition: width 0.7s;
+  overflow: hidden;
+}
+
+.sidebar-close{
+  width: 40px;
+}
+
+.flip-x{
+  transform: scaleX(-100%);
+}

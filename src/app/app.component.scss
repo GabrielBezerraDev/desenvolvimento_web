@@ -1,0 +1,16 @@
+main{
+  display: flex;
+  position: relative;
+  width: 100vw;
+}
+
+main div{
+  position: relative;
+  flex-grow: 1;
+  border-left: 1px solid grey;
+  background-color: #f4f8f3;
+}
+
+
+
+

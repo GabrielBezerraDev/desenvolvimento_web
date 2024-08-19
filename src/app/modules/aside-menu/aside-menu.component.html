@@ -1,0 +1,16 @@
+<aside>
+  <i (click)="toggleAsideMenu()" class="icon-menu pi pi-chevron-left"></i>
+  <h2>Menu</h2>
+  <div class="card flex justify-content-center">
+    <p-menu [model]="items" >
+      <ng-template pTemplate="item" let-item>
+          <ng-container>
+              <div (click)="item.command()" class="p-menuitem-link">
+                  <span [class]="item.icon"></span>
+                  <span class="ml-2">{{ item.label }}</span>
+              </div>
+          </ng-container>
+      </ng-template>
+    </p-menu>
+  </div>
+</aside>

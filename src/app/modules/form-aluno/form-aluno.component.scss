@@ -1,0 +1,25 @@
+.main
+{
+  width: var(--content-container-widht);
+  height: var(--content-container-height);
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  background-color: #ffffff;
+  padding: 30px;
+  height: fit-content;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px #808080;
+}
+
+h3{
+  margin: 0;
+}
+
+

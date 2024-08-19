@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { TableAlunoRoutingModule } from './table-aluno-routing.module';
 import { TableAlunoComponent } from './table-aluno.component';
 import { TableModule } from 'primeng/table';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -12,7 +15,8 @@ import { TableModule } from 'primeng/table';
   imports: [
     CommonModule,
     TableAlunoRoutingModule,
-    TableModule
+    TableModule,
+    ButtonModule
   ]
 })
 export class TableAlunoModule { }

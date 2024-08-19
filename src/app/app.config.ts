@@ -8,10 +8,12 @@ import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes), 
+    provideRouter(routes),
     provideClientHydration(),
     provideAnimations(),
     provideExperimentalZonelessChangeDetection(),
-    provideHttpClient()
+    // provideZoneChangeDetection(),
+    provideHttpClient(),
+    provideRouter(routes)
   ]
 };
