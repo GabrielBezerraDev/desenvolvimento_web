@@ -7,6 +7,9 @@ import { TableModule } from 'primeng/table';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,13 @@ import { ButtonModule } from 'primeng/button';
     CommonModule,
     TableAlunoRoutingModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    ConfirmDialogModule,
+    ToastModule
+  ],
+  providers: [
+    ConfirmationService,
+    MessageService
   ]
 })
 export class TableAlunoModule { }

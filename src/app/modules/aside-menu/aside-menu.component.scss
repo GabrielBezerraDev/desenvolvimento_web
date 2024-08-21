@@ -20,6 +20,11 @@ aside{
   overflow: hidden;
 }
 
+.p-menuitem-link{
+  display: flex;
+  column-gap: 10px
+}
+
 .sidebar-close{
   width: 40px;
 }

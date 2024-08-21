@@ -11,25 +11,27 @@ export class AlunoService {
   constructor(private readonly httpClientService: HttpClientService) { }
 
   public getOneAluno(id:string):Observable<AlunoProtocol>{
-    alert("GET");
     return this.httpClientService.get<AlunoProtocol>(`teste/${id}`);
   }
 
-  public getAllAlunos(id:string):Observable<Array<AlunoProtocol>>{
-    return this.httpClientService.get<Array<AlunoProtocol>>(`teste`);
+  public getTest():Observable<string>{
+    return this.httpClientService.get<string>(`aluno/teste`);
+  }
+
+  public getAllAlunos():Observable<Array<AlunoProtocol>>{
+    return this.httpClientService.get<Array<AlunoProtocol>>(`aluno/all`);
   }
 
   public postAluno(body:AlunoProtocol):Observable<AlunoProtocol>{
-    alert("Fazendo um POST");
-    return this.httpClientService.patch<AlunoProtocol,AlunoProtocol>(`teste`,body);
+    return this.httpClientService.post<AlunoProtocol,AlunoProtocol>(`aluno`,body);
   }
 
   public patchOneAluno(id:string,body:AlunoProtocol):Observable<AlunoProtocol>{
-    return this.httpClientService.patch<AlunoProtocol,AlunoProtocol>(`teste/${id}`,body);
+    return this.httpClientService.patch<AlunoProtocol,AlunoProtocol>(`aluno/${id}`,body);
   }
 
   public deleteOneAluno(id:string):Observable<AlunoProtocol>{
-    return this.httpClientService.get<AlunoProtocol>(`teste/${id}`);
+    return this.httpClientService.delete<AlunoProtocol>(`aluno/${id}`);
   }
 
 }

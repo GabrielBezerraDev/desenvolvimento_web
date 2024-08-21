@@ -50,14 +50,23 @@ export class FormAlunoComponent implements OnInit {
     if(this.idObject.id) this.buttonTitle = "Atualizar";
   }
 
-  public cadastrar():void{
+  public sendForm():void{
     if(!this.aluno.valid) {
       console.log(!this.aluno.valid);
       this.message = {severity:'warn',summary:'Algo deu errado!',detail:'Não foi possível cadastrar o aluno'};
     }else{
       this.idObject.id ?
-      this.alunoService.getOneAluno(this.idObject.id) :
-      this.alunoService.postAluno(this.aluno.getRawValue() as AlunoProtocol);
+      this.alunoService.patchOneAluno(this.idObject.id,this.aluno.getRawValue() as AlunoProtocol).subscribe({
+        next: (value:any) => {
+          console.log(value);
+        }
+
+      }) :
+      this.alunoService.postAluno(this.aluno.getRawValue() as AlunoProtocol).subscribe({
+        next: (value) => {
+          console.log(value);
+        }
+      });
     }
     this.messageService.add(this.message);
   }

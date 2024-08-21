@@ -1,147 +1,66 @@
-import { ChangeDetectorRef, Component, OnInit, signal, WritableSignal } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { AlunoProtocol } from '../../shared/interfaces/AlunoProtocol';
 import { Router } from '@angular/router';
-
-interface Country {
-  name?: string;
-  code?: string;
-}
-
-interface Representative {
-  name?: string;
-  image?: string;
-}
-interface Customer {
-  id?: number;
-  name?: string;
-  country?: Country;
-  company?: string;
-  date?: string | Date;
-  status?: string;
-  activity?: number;
-  representative?: Representative;
-  verified?: boolean;
-  balance?: number;
-}
-
-interface Column {
-  field: string;
-  header: string;
-}
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { AlunoService } from '../../services/aluno/aluno.service';
 
 @Component({
   selector: 'app-table-aluno',
   templateUrl: './table-aluno.component.html',
   styleUrl: './table-aluno.component.scss'
 })
-export class TableAlunoComponent implements OnInit {
+export class TableAlunoComponent implements AfterViewInit {
 
-constructor(private change: ChangeDetectorRef, private readonly router:Router){}
+public alunos: WritableSignal<Array<AlunoProtocol>> = signal([]);
 
-public alunos: WritableSignal<Array<AlunoProtocol>> =
-signal(
-  [
-    {
-      "matricula": "2024001",
-      "nome": "Ana Souza",
-      "idade": 20,
-      "email": "ana.souza@example.com"
-    },
-    {
-      "matricula": "2024002",
-      "nome": "Carlos Pereira",
-      "idade": 22,
-      "email": "carlos.pereira@example.com"
-    },
-    {
-      "matricula": "2024003",
-      "nome": "Fernanda Lima",
-      "idade": 19,
-      "email": "fernanda.lima@example.com"
-    },
-    {
-      "matricula": "2024004",
-      "nome": "João Silva",
-      "idade": 21,
-      "email": "joao.silva@example.com"
-    },
-    {
-      "matricula": "2024005",
-      "nome": "Mariana Costa",
-      "idade": 23,
-      "email": "mariana.costa@example.com"
-    },
-    {
-      "matricula": "2024001",
-      "nome": "Ana Souza",
-      "idade": 20,
-      "email": "ana.souza@example.com"
-    },
-    {
-      "matricula": "2024002",
-      "nome": "Carlos Pereira",
-      "idade": 22,
-      "email": "carlos.pereira@example.com"
-    },
-    {
-      "matricula": "2024003",
-      "nome": "Fernanda Lima",
-      "idade": 19,
-      "email": "fernanda.lima@example.com"
-    },
-    {
-      "matricula": "2024004",
-      "nome": "João Silva",
-      "idade": 21,
-      "email": "joao.silva@example.com"
-    },
-    {
-      "matricula": "2024005",
-      "nome": "Mariana Costa",
-      "idade": 23,
-      "email": "mariana.costa@example.com"
-    },
-    {
-      "matricula": "2024001",
-      "nome": "Bia Souza",
-      "idade": 20,
-      "email": "ana.souza@example.com"
-    },
-    {
-      "matricula": "2024002",
-      "nome": "Carlos Pereira",
-      "idade": 22,
-      "email": "carlos.pereira@example.com"
-    },
-    {
-      "matricula": "2024003",
-      "nome": "Fernanda Lima",
-      "idade": 19,
-      "email": "fernanda.lima@example.com"
-    },
-    {
-      "matricula": "2024004",
-      "nome": "João Silva",
-      "idade": 21,
-      "email": "joao.silva@example.com"
-    },
-    {
-      "matricula": "2024005",
-      "nome": "Mariana Costa",
-      "idade": 23,
-      "email": "mariana.costa@example.com"
-    }
-  ]
-)
+constructor(
+  private readonly change: ChangeDetectorRef,
+  private readonly router:Router,
+  private readonly confirmationService: ConfirmationService,
+  private readonly messageService: MessageService,
+  private readonly alunoService: AlunoService
+){}
 
-ngOnInit(): void {
-  setTimeout(() => this.change.detectChanges(),1)
+
+
+ngAfterViewInit(): void {
+  setTimeout(() => {
+
+    this.alunoService.getAllAlunos().subscribe({
+      next: (value) => {
+        this.alunos.set(value)
+        console.log(this.alunos());
+      }
+    });
+    this.change.detectChanges();
+  },1);
 }
-
 public teste():void{
   this.router.navigateByUrl("/form");
 }
 
+public updateAluno(matriculaId:string):void{
+  this.router.navigateByUrl(`/form/${matriculaId}`);
+}
 
+public deleteAluno(event:Event,matriculaId:string){
+  this.confirmationService.confirm({
+    target: event.target as EventTarget,
+    message: 'Você deseja deletar esse Aluno?',
+    header: 'Deletar Aluno.',
+    icon: 'pi pi-info-circle',
+    acceptButtonStyleClass:"p-button-danger p-button-text",
+    rejectButtonStyleClass:"p-button-text p-button-text",
+    acceptIcon:"none",
+    rejectIcon:"none",
+
+    accept: () => {
+        this.messageService.add({ severity: 'success', summary: 'Deletado!', detail: 'Aluno Deletado!' });
+        this.alunoService.deleteOneAluno(matriculaId).subscribe({
+          next: (value) => console.log(value)
+        });
+    }
+});
+}
 
 }
