@@ -12,6 +12,7 @@ export class HttpClientService {
   constructor(private readonly httpClient: HttpClient) { }
 
   public get<T>(url:string):Observable<T>{
+    //localhost:8080/aluno/all
     return this.httpClient.get<T>(`${this.IP_SERVER_LOCAL}${url}`);
   }
 

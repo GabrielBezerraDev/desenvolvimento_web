@@ -1,8 +1,9 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, signal, WritableSignal } from '@angular/core';
-import { AlunoProtocol } from '../../shared/interfaces/AlunoProtocol';
+import { AlunoProtocol } from '../../shared/interfaces/Aluno/AlunoProtocol';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AlunoService } from '../../services/aluno/aluno.service';
+import { ResponseDTO } from '../../shared/interfaces/ResponseDTO/ResponseDTO';
 
 @Component({
   selector: 'app-table-aluno',
@@ -24,16 +25,16 @@ constructor(
 
 
 ngAfterViewInit(): void {
-  setTimeout(() => {
-
+  setTimeout(() =>{
+    this.change.detectChanges()
     this.alunoService.getAllAlunos().subscribe({
       next: (value) => {
-        this.alunos.set(value)
+        this.alunos.set((value as unknown as ResponseDTO<Array<AlunoProtocol>>).responseDTO);
         console.log(this.alunos());
       }
     });
-    this.change.detectChanges();
-  },1);
+  }
+  ,1);
 }
 public teste():void{
   this.router.navigateByUrl("/form");
@@ -56,9 +57,7 @@ public deleteAluno(event:Event,matriculaId:string){
 
     accept: () => {
         this.messageService.add({ severity: 'success', summary: 'Deletado!', detail: 'Aluno Deletado!' });
-        this.alunoService.deleteOneAluno(matriculaId).subscribe({
-          next: (value) => console.log(value)
-        });
+        this.alunoService.deleteOneAluno(matriculaId).subscribe();
     }
 });
 }
