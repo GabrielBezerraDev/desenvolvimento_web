@@ -1,27 +1,12 @@
-# DesenvolvimentoWeb
+# Trabalho de Desenvolvimento Web <br>
+Este trabalho é designado a matéria de desenvolvimento web, conduzido pelo docente Benevaldo.<br>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0.
+# Sobre o escopo trabalho <br>
+O trabalho consiste em desenvolvimento de ima aplicação de gerenciamento de alunos, onde nós temos um CRUD completo em duas telas. <br>
 
-## Development server
+1- TABELA: na tela da tabela, está em uso dois métodos HTTP, o DELETE que está associado com o botão, e o GET feito pela aplicação para buscar todos os registros de alunos que residem no banco de dados.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+2 - FORMULÁRIO: no Formulário está em uso os métodos POST e PUT,para utilizar o PUT é necessário clicar no botão de "atualizar" em algum registro da tabela. Para utilizar o POST, o acesso a tela deve ser pela aba "cadastrar aluno", pelo menu ao lado.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+# Outras Features do sistema:
