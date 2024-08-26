@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
 import { AlunoService } from '../../services/aluno/aluno.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlunoProtocol } from '../../shared/interfaces/Aluno/AlunoProtocol';
 import { AlunoProtocolPatch } from '../../shared/interfaces/Aluno/AlunoPatchProtocol';
 
@@ -30,7 +30,8 @@ export class FormAlunoComponent implements OnInit {
     private readonly formBuilder: FormBuilder,
     private readonly messageService: MessageService,
     private readonly alunoService:AlunoService,
-    private readonly router: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly router: Router
     ){}
 
   ngOnInit(): void {
@@ -51,7 +52,7 @@ export class FormAlunoComponent implements OnInit {
   }
 
   public async checkExistId():Promise<void>{
-    this.idObject.id = await new Promise((resolve) => {this.router.params.subscribe((value) => resolve((value as Id).id))});
+    this.idObject.id = await new Promise((resolve) => {this.activatedRoute.params.subscribe((value) => resolve((value as Id).id))});
     if(!this.idObject.id) return;
     this.getAlunoPatch = await new Promise((resolve) => this.alunoService.getOneAluno(this.idObject.id).subscribe({next: (value) =>  resolve(value.responseDTO)}));
     console.log(this.getAlunoPatch);
@@ -62,6 +63,7 @@ export class FormAlunoComponent implements OnInit {
 
   public sendForm():void{
     this.idObject.id ? this.sendToPatchMethod() : this.sendToPostMethod();
+    setTimeout(() => this.router.navigateByUrl("/table"), 500)
   }
 
   public changeMessage(message:Message):void{

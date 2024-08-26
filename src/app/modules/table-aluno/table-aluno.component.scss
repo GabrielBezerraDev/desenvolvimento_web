@@ -12,7 +12,6 @@
 
 .body{
   width: 100%;
-  min-height: var(--content-container);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,5 +23,6 @@
   display: flex;
   column-gap: 10px;
 }
+
 
 

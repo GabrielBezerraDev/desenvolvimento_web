@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { MenuModule } from 'primeng/menu';
 import { AsideMenuComponent } from './modules/aside-menu/aside-menu.component';
@@ -24,7 +24,10 @@ interface MenuItem{
   styleUrl: './app.component.scss'
 })
 
-export class AppComponent {
+export class AppComponent{
   title = 'desenvolvimento_web';
 
+  public static getDocumentHTML():Document{
+    return document;
+  }
 }

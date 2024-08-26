@@ -4,8 +4,9 @@
 @import "primeicons/primeicons.css";
 
 :root{
+  --aside-menu-width: 250px;
   --content-container-height: calc(100vh - 100px);
-  --content-container-widht: calc(100vw - 250px);
+  --content-container-widht: calc(100vw - var(--aside-menu-width));
 }
 
 body, html{

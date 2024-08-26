@@ -1,0 +1,25 @@
+
+
+.spinner-container{
+  width: calc(100% - var(--aside-menu-width));
+  transition: width 0.5s;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  background-color: #ffffff;
+}
+
+.spinner{
+  margin-top: 15%;
+}
+
+.spinner-color{
+  color: green;
+}
+
+.titleLoading{
+  font-weight: bold;
+  color: rgb(5, 42, 5);
+}

@@ -1,9 +1,17 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, signal, WritableSignal } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, signal, ViewChild, WritableSignal } from '@angular/core';
 import { AlunoProtocol } from '../../shared/interfaces/Aluno/AlunoProtocol';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AlunoService } from '../../services/aluno/aluno.service';
 import { ResponseDTO } from '../../shared/interfaces/ResponseDTO/ResponseDTO';
+import { LoadingSpinnerComponent } from '../../shared/modules/loading-spinner/loading-spinner.component';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Dropdown } from 'primeng/dropdown';
+
+interface Columns{
+  name: string;
+  field: string;
+}
 
 @Component({
   selector: 'app-table-aluno',
@@ -12,36 +20,60 @@ import { ResponseDTO } from '../../shared/interfaces/ResponseDTO/ResponseDTO';
 })
 export class TableAlunoComponent implements AfterViewInit {
 
+@ViewChild(LoadingSpinnerComponent) loadingSpinnerComponent:LoadingSpinnerComponent;
+
 public alunos: WritableSignal<Array<AlunoProtocol>> = signal([]);
+public loadingBoolean: WritableSignal<boolean> = signal(false);
+public nameColumns: WritableSignal<Array<Columns>> = signal([
+  {name: "Matrícula",field:"matricula"},
+  {name: "Nome",field:"nome"},
+  {name: "Idade",field:"idade"},
+  {name: "Email",field:"email"}
+])
+public filter: Columns | undefined;
+public filterInput: WritableSignal<string> = signal("matricula");
 
 constructor(
   private readonly change: ChangeDetectorRef,
   private readonly router:Router,
   private readonly confirmationService: ConfirmationService,
   private readonly messageService: MessageService,
-  private readonly alunoService: AlunoService
+  private readonly alunoService: AlunoService,
+  private readonly elementRef: ElementRef
 ){}
 
 
 
 ngAfterViewInit(): void {
-  setTimeout(() =>{
+  this.getAllAlunos();
+  console.log(this.filterInput());
+
+}
+
+public getAllAlunos():void{
+  setTimeout(async () =>{
     this.change.detectChanges()
-    this.alunoService.getAllAlunos().subscribe({
-      next: (value) => {
-        this.alunos.set((value as unknown as ResponseDTO<Array<AlunoProtocol>>).responseDTO);
-        console.log(this.alunos());
-      }
-    });
+    await new Promise((resolve) => {
+      this.loadingSpinnerComponent.toggleLoading(true);
+      this.alunoService.getAllAlunos().subscribe({
+        next: (value) => {
+          resolve(this.alunos.set((value as unknown as ResponseDTO<Array<AlunoProtocol>>).responseDTO));
+          this.loadingSpinnerComponent.toggleLoading(false);
+        }
+      })
+    })
   }
   ,1);
 }
-public teste():void{
-  this.router.navigateByUrl("/form");
+
+public setFilter():void{
+  console.log((this.filter as Columns).name);
+
 }
 
 public updateAluno(matriculaId:string):void{
   this.router.navigateByUrl(`/form/${matriculaId}`);
+
 }
 
 public deleteAluno(event:Event,matriculaId:string){
@@ -56,8 +88,12 @@ public deleteAluno(event:Event,matriculaId:string){
     rejectIcon:"none",
 
     accept: () => {
-        this.messageService.add({ severity: 'success', summary: 'Deletado!', detail: 'Aluno Deletado!' });
-        this.alunoService.deleteOneAluno(matriculaId).subscribe();
+        this.alunoService.deleteOneAluno(matriculaId).subscribe({
+          next: () => {
+            this.getAllAlunos();
+            this.messageService.add({ severity: 'success', summary: 'Deletado!', detail: 'Aluno Deletado!' });
+        }
+      });
     }
 });
 }

@@ -8,6 +8,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { LoadingSpinnerModule } from '../../shared/modules/loading-spinner/loading-spinner.module';
 
 
 @NgModule({
@@ -17,6 +19,7 @@ import { MessageService } from 'primeng/api';
   imports: [
     CommonModule,
     FormAlunoRoutingModule,
+    ProgressSpinnerModule,
     ReactiveFormsModule,
     InputTextModule,
     ButtonModule,

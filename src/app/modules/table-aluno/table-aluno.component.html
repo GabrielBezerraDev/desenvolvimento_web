@@ -1,4 +1,5 @@
-
+<app-loading-spinner
+></app-loading-spinner>
 <p-confirmDialog />
 <p-toast/>
 <div class="body">
@@ -7,6 +8,7 @@
   </div>
   <div class="card">
       <p-table
+          #table
           [value]="alunos()"
           [paginator]="true"
           [rows]="5"
@@ -19,15 +21,29 @@
               <th>Nome</th>
               <th>Idade</th>
               <th>Email</th>
-              <th></th>
+              <th>
+                <div>
+                  <p-dropdown
+                      [(ngModel)]="filter"
+                      [options]="nameColumns()"
+                      optionLabel="name"
+                      placeholder="Selecio o filtro"
+                      (onChange)="setFilter()"
+                      />
+              	 </div>
+              </th>
+              <th>
+                <p-columnFilter type="text" field="filterInput()" [showClearButton]="false" />
+              </th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-alunos>
               <tr>
-                  <td>{{ alunos.matricula }}</td>
-                  <td>{{ alunos.nome }}</td>
+                  <td pEditableColumnField="matricula">{{ alunos.matricula }}</td>
+                  <td pEditableColumnField="nome">{{ alunos.nome }}</td>
                   <td>{{ alunos.idade }}</td>
                   <td>{{ alunos.email }}</td>
+                  <td></td>
                   <td class="buttons">
                     <p-button (onClick)="updateAluno(alunos.matricula)" icon="pi pi-pencil" severity="info" />
                     <p-button (onClick)="deleteAluno($event,alunos.matricula)" icon="pi pi-times" severity="danger" />
@@ -36,4 +52,4 @@
           </ng-template>
       </p-table>
   </div>
-</div>>
+</div>

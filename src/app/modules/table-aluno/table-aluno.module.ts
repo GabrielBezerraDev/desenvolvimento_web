@@ -10,6 +10,10 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { LoadingSpinnerModule } from '../../shared/modules/loading-spinner/loading-spinner.module';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,9 +23,14 @@ import { ToastModule } from 'primeng/toast';
     CommonModule,
     TableAlunoRoutingModule,
     TableModule,
+    LoadingSpinnerModule,
     ButtonModule,
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
+    InputTextModule,
+    DropdownModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ConfirmationService,
