@@ -21,19 +21,9 @@
               <th>Nome</th>
               <th>Idade</th>
               <th>Email</th>
+              <th></th>
               <th>
-                <div>
-                  <p-dropdown
-                      [(ngModel)]="filter"
-                      [options]="nameColumns()"
-                      optionLabel="name"
-                      placeholder="Selecio o filtro"
-                      (onChange)="setFilter()"
-                      />
-              	 </div>
-              </th>
-              <th>
-                <p-columnFilter type="text" field="filterInput()" [showClearButton]="false" />
+                  <p-columnFilter placeholder="Pesquisar pela Matrícula" type="text" field="matricula" [showClearButton]="false" />
               </th>
             </tr>
           </ng-template>

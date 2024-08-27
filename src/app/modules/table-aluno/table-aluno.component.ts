@@ -8,10 +8,6 @@ import { LoadingSpinnerComponent } from '../../shared/modules/loading-spinner/lo
 import { FormControl, FormGroup } from '@angular/forms';
 import { Dropdown } from 'primeng/dropdown';
 
-interface Columns{
-  name: string;
-  field: string;
-}
 
 @Component({
   selector: 'app-table-aluno',
@@ -22,16 +18,9 @@ export class TableAlunoComponent implements AfterViewInit {
 
 @ViewChild(LoadingSpinnerComponent) loadingSpinnerComponent:LoadingSpinnerComponent;
 
+
 public alunos: WritableSignal<Array<AlunoProtocol>> = signal([]);
 public loadingBoolean: WritableSignal<boolean> = signal(false);
-public nameColumns: WritableSignal<Array<Columns>> = signal([
-  {name: "Matrícula",field:"matricula"},
-  {name: "Nome",field:"nome"},
-  {name: "Idade",field:"idade"},
-  {name: "Email",field:"email"}
-])
-public filter: Columns | undefined;
-public filterInput: WritableSignal<string> = signal("matricula");
 
 constructor(
   private readonly change: ChangeDetectorRef,
@@ -46,7 +35,6 @@ constructor(
 
 ngAfterViewInit(): void {
   this.getAllAlunos();
-  console.log(this.filterInput());
 
 }
 
@@ -66,10 +54,6 @@ public getAllAlunos():void{
   ,1);
 }
 
-public setFilter():void{
-  console.log((this.filter as Columns).name);
-
-}
 
 public updateAluno(matriculaId:string):void{
   this.router.navigateByUrl(`/form/${matriculaId}`);
