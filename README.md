@@ -1,28 +1,27 @@
-# Trabalho de Desenvolvimento Web <br>
-Este trabalho é designado a matéria de desenvolvimento web, conduzido pelo docente Benevaldo.<br>
+# Trabalho de Desenvolvimento Web  
+Este trabalho faz parte da matéria de Desenvolvimento Web, conduzido pelo professor Benevaldo.
 
-# Sobre o escopo do trabalho <br>
-O trabalho consiste em desenvolvimento de ima aplicação de gerenciamento de alunos, onde nós temos um CRUD completo em duas telas. <br>
+## Sobre o escopo do trabalho  
+O objetivo do trabalho é desenvolver uma aplicação para gerenciamento de alunos, que conta com um CRUD completo em duas telas.
 
-1- <strong>TABELA</strong>: na tela da tabela, está em uso dois métodos HTTP, o DELETE que está associado com o botão, e o GET feito pela aplicação para buscar todos os registros de alunos que residem no banco de dados.
+1. **TABELA:** Na tela da tabela, são utilizados dois métodos HTTP. O método `DELETE` está associado ao botão de exclusão, enquanto o `GET` é utilizado pela aplicação para buscar todos os registros de alunos no banco de dados.
 
-2 - <strong>FORMULÁRIO</strong>: no Formulário está em uso os métodos POST e PUT,para utilizar o PUT é necessário clicar no botão de "atualizar" em algum registro da tabela. Para utilizar o POST, o acesso a tela deve ser pela aba "cadastrar aluno", pelo menu ao lado.
+2. **FORMULÁRIO:** Na tela do formulário, são utilizados os métodos `POST` e `PUT`. Para utilizar o `PUT`, basta clicar no botão "atualizar" em algum registro da tabela. Para utilizar o `POST`, acesse a aba "Cadastrar Aluno" no menu lateral.
 
-# Como rodar o sistema:<br>
+## Como rodar o sistema:
 
-<strong>1°PASSO:</strong> É necessário está instalado na máquina node >= x.x.x e npm >= x.x.x .<br>
+1. **Pré-requisitos:** Certifique-se de que a sua máquina tenha o Node.js (>= 16.14.0) e npm (>= 8.0.0) instalados.
 
-<strong>2°PASSO:</strong> Der o comando npm install em um terminal localizado diretório da aplicação, assim, npm instala todas as dependências necessárias para rodar o projeto. <br>
+2. **Instalação de dependências:** No diretório da aplicação, execute o comando `npm install` para instalar todas as dependências necessárias.
 
-<strong>3°PASSO:</strong> Em um terminal localizado no diretório do projeto, der o comando npm run start. Este comando executa ng start,essa execução é feita no arquivo package.json do projeto na parte de script.<br>
+3. **Iniciar a aplicação:** No mesmo diretório, execute `npm run start` para iniciar o sistema. O comando `ng start` é configurado no arquivo `package.json` do projeto, na seção de scripts.
 
-<strong>4°PASSO:</strong> No navegador, acesse localhost:4200 para acessar o sistema.
+4. **Acessar o sistema:** Abra o navegador e acesse `http://localhost:4200` para utilizar o sistema.
 
+## Outras funcionalidades do sistema:
 
+1. **Menu Lateral:** O sistema possui um menu lateral que permite navegar entre as duas telas (Tabela e Formulário). É possível recolher o menu lateral, caso o usuário deseje.
 
-# Outras Features do sistema: <br>
-1 - <strong> MENU LATERAL: </strong>o sistema poussui um menu lateral que permite navegar entre as duas telas do sistema, a Tabela e o formulário. Também é possível diminuir o menu lateral caso desejado pelo usuário.<br>
+2. **Paginação:** Existe a opção de paginação na tabela, permitindo a visualização de uma quantidade menor de dados por página.
 
-2 - <strong>PAGINAÇÃO:</strong> é  possível adicionar uma paginação na tabela do sistema para visualizar uma quantidade menos massiva de dados.
-
-3 - <strong>FILTRO:</strong> é possível filtrar o aluno pela matrícula do mesmo em Input localizado no canto superior esquerdo da tabela.
+3. **Filtro:** O sistema permite filtrar alunos pela matrícula, através de um campo de entrada localizado no canto superior esquerdo da tabela.
